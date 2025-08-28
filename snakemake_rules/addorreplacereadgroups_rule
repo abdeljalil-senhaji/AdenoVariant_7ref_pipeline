@@ -1,0 +1,9 @@
+rule addorreplacereadgroups:
+    input:  
+          bam = "{prefix}/{sample}/{ref_id}/{sample}_dedup_reads.bam"
+    output:  
+          out = temp("{prefix}/{sample}/{ref_id}/{sample}_GroupReads_dedup_reads.bam")
+    log:
+          "{prefix}/{sample}/{ref_id}/logs/{sample}.addorreplacereadgroups.log"
+    shell: 
+          "java -Xmx3500m -Xms3500m -XX:ParallelGCThreads=1 -XX:+AggressiveHeap -jar /usr/share/java/picard.jar AddOrReplaceReadGroups I={input} O={output} ID=FLOWCELL_{wildcards.sample} LB=LIB_{wildcards.sample} PL=ILLUMINA SM={wildcards.sample} PU=unit1 2>&1 | tee -a {log}"

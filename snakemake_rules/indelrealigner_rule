@@ -1,0 +1,15 @@
+rule indelrealigner:
+	input:
+		bam = "{prefix}/{sample}/{ref_id}/{sample}_GroupReads_dedup_reads.bam",
+		intervals = "{prefix}/{sample}/{ref_id}/{sample}.intervals",
+                fai = "{prefix}/{sample}/{ref_id}/{ref_id}.fasta.fai",
+                ref = "{prefix}/{sample}/{ref_id}/{ref_id}.fasta",
+                dict = "{prefix}/{sample}/{ref_id}/{ref_id}.dict",
+	output:
+		temp("{prefix}/{sample}/{ref_id}/{sample}_realigned_reads.bam")
+	log:
+		"{prefix}/{sample}/{ref_id}/logs/{sample}_indelrealigner.log"
+	params:
+		indelrealigner = config["indelrealigner"]["OPTIONS"]
+	shell:
+		"java -Xmx11000m -Xms11000m -XX:ParallelGCThreads=2 -XX:+AggressiveHeap -jar /usr/share/java/GenomeAnalysisTK.jar -T IndelRealigner {params.indelrealigner} -R {input.ref} -targetIntervals {input.intervals} -I {input.bam} -o {output} 2>&1 | tee -a {log}"

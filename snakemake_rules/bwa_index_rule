@@ -1,0 +1,15 @@
+rule bwa_index:
+	input:
+                "{prefix}/{sample}/{ref_id}/{sample}_consensus.fasta"
+	output:
+                amb = temp("{prefix}/{sample}/{ref_id}/{sample}_consensus.fasta.amb"),
+		ann = temp("{prefix}/{sample}/{ref_id}/{sample}_consensus.fasta.ann"),
+		bwt = temp("{prefix}/{sample}/{ref_id}/{sample}_consensus.fasta.bwt"),
+		pac = temp("{prefix}/{sample}/{ref_id}/{sample}_consensus.fasta.pac"),
+		sa = temp("{prefix}/{sample}/{ref_id}/{sample}_consensus.fasta.sa")
+	log:
+		"{prefix}/{sample}/{ref_id}/logs/{sample}.bwa_index.log"
+	params:
+		bwa_index = config["bwa_index"]["OPTIONS"]
+	shell:
+		'docker_wrapper -c \"bwa index {params.bwa_index} {input}\" 2>&1 | tee -a {log}'

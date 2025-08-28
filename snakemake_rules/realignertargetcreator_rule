@@ -1,0 +1,15 @@
+rule realignertargetcreator:
+        input:
+                bam = "{prefix}/{sample}/{ref_id}/{sample}_GroupReads_dedup_reads.bam",
+                ref = "{prefix}/{sample}/{ref_id}/{ref_id}.fasta",
+                fai = "{prefix}/{sample}/{ref_id}/{ref_id}.fasta.fai",
+                dict = "{prefix}/{sample}/{ref_id}/{ref_id}.dict",
+                bai = "{prefix}/{sample}/{ref_id}/{sample}_GroupReads_dedup_reads.bam.bai"
+        output:
+                temp("{prefix}/{sample}/{ref_id}/{sample}.intervals")
+        log:
+                "{prefix}/{sample}/{ref_id}/logs/{sample}_realignertargetcreator.log"
+        params:
+                realignertargetcreator = config["realignertargetcreator"]["OPTIONS"]
+        shell:
+                "java -Xmx11000m -Xms11000m -XX:ParallelGCThreads=8 -XX:+AggressiveHeap -jar /usr/share/java/GenomeAnalysisTK.jar -T RealignerTargetCreator {params.realignertargetcreator} -R {input.ref} -I {input.bam} -o {output} 2>&1 | tee -a {log}"

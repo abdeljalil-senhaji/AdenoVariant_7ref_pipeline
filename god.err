@@ -1,0 +1,8 @@
+docker_wrapper -c "pileup.sh in=/scratch/recherche/asenhaji/v4.1_pipe_adeno_7ref_bowtie2/output/neg3_S21_L001/HAdVrefA/neg3_S21_L001.sam out=/scratch/recherche/asenhaji/v4.1_pipe_adeno_7ref_bowtie2/output/rapport_html/neg3_S21_L001/HAdVrefA.neg3_S21_L001.cov.txt" 2>&1 | tee -a /scratch/recherche/asenhaji/v4.1_pipe_adeno_7ref_bowtie2/output/neg3_S21_L001/logs/neg3_S21_L001_pileup_sh.log
+Error in job pileup_sh while creating output file /scratch/recherche/asenhaji/v4.1_pipe_adeno_7ref_bowtie2/output/rapport_html/neg3_S21_L001/HAdVrefA.neg3_S21_L001.cov.txt.
+RuleException:
+CalledProcessError in line 9 of /scratch/recherche/asenhaji/v4.1_pipe_adeno_7ref_bowtie2/snakemake_rules/pileup_sh_rule:
+Command 'docker_wrapper -c "pileup.sh in=/scratch/recherche/asenhaji/v4.1_pipe_adeno_7ref_bowtie2/output/neg3_S21_L001/HAdVrefA/neg3_S21_L001.sam out=/scratch/recherche/asenhaji/v4.1_pipe_adeno_7ref_bowtie2/output/rapport_html/neg3_S21_L001/HAdVrefA.neg3_S21_L001.cov.txt" 2>&1 | tee -a /scratch/recherche/asenhaji/v4.1_pipe_adeno_7ref_bowtie2/output/neg3_S21_L001/logs/neg3_S21_L001_pileup_sh.log' returned non-zero exit status 1
+  File "/scratch/recherche/asenhaji/v4.1_pipe_adeno_7ref_bowtie2/snakemake_rules/pileup_sh_rule", line 9, in __rule_pileup_sh
+  File "/data/snakemake/miniconda3/envs/snakemake/lib/python3.5/concurrent/futures/thread.py", line 55, in run
+Exiting because a job execution failed. Look above for error message

@@ -1,0 +1,1 @@
+godjob create -n seqkit -t seqkit,seqkit --external_image -v home -v scratch -v annotations -c 2 -r 4 -i sequoia-docker-tools/seqkit:2.8.2-1 --cmd "seqkit seq -m 200 /scratch/recherche/asenhaji/v4.2_pipe_adeno_7ref_bowtie2/009-0009-L-N-S2_S22_L001_contigs.fasta -o /scratch/recherche/asenhaji/v4.2_pipe_adeno_7ref_bowtie2/200_009-0009-L-N-S2_S22_L001_contigs.fasta"

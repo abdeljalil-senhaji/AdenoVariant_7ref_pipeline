@@ -1,0 +1,9 @@
+rule bgzip:
+    input:
+        "{prefix}/{sample}/{ref_id}/{sample}_VS.vcf"
+    output:
+        temp("{prefix}/{sample}/{ref_id}/{sample}_VS.vcf.gz")
+    log:
+        "{prefix}/{sample}/{ref_id}/logs/{sample}_bgzip.log"
+    shell:
+        "bgzip -c {input} > {output} 2>&1 | tee -a {log}"

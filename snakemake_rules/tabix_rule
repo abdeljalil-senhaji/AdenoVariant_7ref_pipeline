@@ -1,0 +1,11 @@
+rule tabix:
+    input:
+        "{prefix}/{sample}/{ref_id}/{sample}_VS.vcf.gz"
+    output:
+        temp("{prefix}/{sample}/{ref_id}/{sample}_VS.vcf.gz.tbi")
+    log:
+        "{prefix}/{sample}/{ref_id}/logs/{sample}_bcftools_index.log"
+    params:
+        tabix_options = config["tabix"]["OPTIONS"]
+    shell:
+        'docker_wrapper -c \"tabix {params.tabix_options} {input} \" 2>&1 | tee -a {log}'

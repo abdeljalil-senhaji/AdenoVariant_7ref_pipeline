@@ -1,0 +1,39 @@
+# file
+*.fastq
+*.fastq.gz
+*.fasta
+*.fq
+*.bam
+*.cram
+*.vcf
+*.bed
+*.sam
+*.bai
+*.tbi
+*.idx
+*.gz
+*.taxids.txt
+*.zip
+*.jalil
+
+# db  
+/data
+/database/
+/db/
+/results/
+/logs/
+/.snakemake/
+# file temporaires
+*.tmp
+*.temp
+*.swp
+*~
+
+# Environnements virtuels
+/venv/
+/env/
+__pycache__
+
+# OS files
+.DS_Store
+Thumbs.db
